@@ -151,6 +151,7 @@ public class YoRPG {
 
 		System.out.println( "Ye Olde Monster hit back for " + d2 +
 				    " points of damage.");
+
 	    }//end while
 
 	    //option 1: you & the monster perish

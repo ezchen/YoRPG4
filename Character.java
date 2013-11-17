@@ -19,12 +19,28 @@ public abstract class Character {
 		return this.name;
 	}
 
+	public int getStrength() {
+		return this.strength;
+	}
+
 	public int getDefense() {
 		return this.defense;
 	}
 
 	public int getLife() {
 		return this.life;
+	}
+
+	public double getAttackRating() {
+		return this.attackRating;
+	}
+
+	public Weapon getWeapon() {
+		return this.weapon;
+	}
+
+	public Armor getArmor() {
+		return this.armor;
 	}
 
 	//setters
@@ -60,7 +76,8 @@ public abstract class Character {
 			System.out.println( "You avoided the attack!" );
 			return 0;
 		} else {
-			int damage = (int) ((this.strength * this.attackRating) - character.getDefense());
+			int damage = (int) ((this.strength * (this.attackRating + this.weapon.getDamage()))
+					       	- (character.getDefense() + character.getArmor().getDefense()));
 			if ( damage < 0 )
 				damage = 0;
 			character.lowerHP( damage );
@@ -73,6 +90,10 @@ public abstract class Character {
 		return this.strength;
 	}
 
+	//we should replace the current weapon with an existing
+	//object already with the default value of 0 instead of
+	//creating a new object each time to save memory. But
+	//keep this until we implement inventory
 	public double unEquipWeapon() {
 		this.weapon = new Weapon( 0 );
 		return this.attackRating;
@@ -84,7 +105,7 @@ public abstract class Character {
 	}
 
 	public int unEquipArmor() {
-		this.armor = new Armor(0);
+		this.armor = new Armor( 0 );
 		return this.defense;
 	}
 
