@@ -14,6 +14,6 @@ public class Necromancer extends Character{
     public int equip( Armor a ) {return -1;}
 
     public static String about() {
-	return "Necromancers are quite skilled in animating people that were killed. Dark they spread, across the land, raising armies of undead. If you crss the path of one, my sole advice to you is run!";
+	return "Necromancers are quite skilled in animating people that were killed. Dark across the land they spread, raising armies of undead. If you cross the path of one, my sole advice to you is run!";
     }
 }
