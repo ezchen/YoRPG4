@@ -27,8 +27,9 @@
 		this.defense = 30;
 	}
 
-	public boolean dodge() {
-		return false;
+        public int equip( Armor a ) {
+		this.armor = a;
+		return this.armor.getLevel();
 	}
 
 	public static String about() {

@@ -19,9 +19,7 @@
 		System.out.println( "monsters don't have special attacks");
 	}
 
-	public boolean dodge() {
-		return false;
-	}
+        public int equip( Armor a ) {return -1;}
 
 	public static String about() {
 		return "Monsters run and monsters fly, monsters yonder monsters nigh, Mage and Rogue they gobble up, on Warrior they like to sup.  If you see one then beware, make sure you don't stop and stare. Cause if you meet one eye to eye, why then, you will surely die.";

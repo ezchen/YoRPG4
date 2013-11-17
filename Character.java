@@ -10,6 +10,7 @@ public abstract class Character {
 	protected int life;
 	protected int strength;
 	protected int defense;
+	protected int dodge = -1;
 	protected double attackRating;
 	protected Weapon weapon = new Weapon(0);
 	protected Armor armor = new Armor(0);
@@ -85,6 +86,14 @@ public abstract class Character {
 		}
 	}
 
+	public boolean dodge() {
+		if (this.dodge > Math.random()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public double equip( Weapon newWeapon ) {
 		this.weapon = newWeapon;
 		return this.strength;
@@ -99,10 +108,6 @@ public abstract class Character {
 		return this.attackRating;
 	}
 
-	public int equip( Armor newArmor ) {
-		this.armor = newArmor;
-		return this.defense;
-	}
 
 	public int unEquipArmor() {
 		this.armor = new Armor( 0 );
@@ -114,11 +119,12 @@ public abstract class Character {
 		return this.life;
 	}
 
+	public abstract int equip( Armor newArmor );
+
 	public abstract void specialize();
 
 	public abstract void normalize();
 
-	public abstract boolean dodge();
 
 	public static String about() {
 		return "a brave hero, unsure of what his profession is yet";	

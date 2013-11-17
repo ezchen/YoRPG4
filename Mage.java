@@ -5,14 +5,19 @@
 public class Mage extends Character{
 
     public Mage(String name){
-	_name=name;
-	_hp=125;
-	_defense=100;
-	_strength=20;
-	_attack=0.2;
+	this.name=name;
+	this.life=125;
+	this.defense=100;
+	this.strength=20;
+	this.attackRating=0.2;
     }
 
-    public String about(){
+    public void normalize() {}
+    public void specialize() {}
+
+    public int equip( Armor a ) {return -1;}
+
+    public static String about() {
 	return "Abra-kadabra, Alakazam, the Mage, the bearded wizard man.  Witches, warlocks, healers too, all part of the good Mage crew.  Casting spells and using powers, they demolish armies within hours.";
     }
 
