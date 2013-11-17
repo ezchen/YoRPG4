@@ -32,7 +32,7 @@
 	}
 
 	public static String about() {
-		return "A mighty warrior capable of strong melee attacks and boasts quite a decent defense";
+		return "Warriors are known to stalk the land, their trusty sword is held in hand.  No monster can stand in their path, not often do they take a bath. With every strike of bow or pike, they kill the monsters we don't like.";
 	}
 
 }

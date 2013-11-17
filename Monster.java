@@ -24,7 +24,7 @@
 	}
 
 	public static String about() {
-		return "smaug monster!";
+		return "Monsters run and monsters fly, monsters yonder monsters nigh, Mage and Rogue they gobble up, on Warrior they like to sup.  If you see one then beware, make sure you don't stop and stare. Cause if you meet one eye to eye, why then, you will surely die.";
 	}
 
 }

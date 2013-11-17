@@ -40,7 +40,7 @@ public class Rogue extends Character {
 	}
 			
 	public static String about() {
-		return "A sly rogue. Pitifully weak, but is capable of dodging attacks. Specializing decreases dodge chance and increases attack power";
+		return "The Rogue is often known a thief, with both kings and peasants they've had beef.  They're quick to come and eager to go, where they'll be next you never know.  Skilled with dagger they must be, to locks they can always find the key.;
 	}
 
 }
