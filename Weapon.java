@@ -7,8 +7,9 @@ public class Weapon {
 		this.damage = 0;
 	}
 
-	public Weapon( int newDamage ) {
-		this.damage = newDamage;
+	public Weapon( int newLevel ) {
+		this.level = newLevel;
+		this.damage = ((float) newLevel)/10.0;
 	}
 
 	public double getDamage() {
@@ -16,6 +17,11 @@ public class Weapon {
 	}
 
 	public int getLevel() {
+		return this.level;
+	}
+
+	public int setLevel( int level ) {
+		this.level = level;
 		return this.level;
 	}
 
