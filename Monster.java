@@ -4,12 +4,15 @@
 //2013-11-14
  public class Monster extends Character {
 
+	protected int gold;
+
 	public Monster() {
 		this.name = "The monster ";
 		this.life = 150;
 		this.strength = (int) (20 + (46 * Math.random()));
 		this.defense = 20;
 		this.attackRating = .9;
+		this.gold = (int) (this.strength * .1);
 	}
 
 	public void specialize() {
@@ -18,6 +21,10 @@
 
 	public void normalize() {
 		System.out.println( "monsters don't have special attacks");
+	}
+
+	public int getGold() {
+		return this.gold;
 	}
 
         public int equip( Armor a ) {return -1;}
