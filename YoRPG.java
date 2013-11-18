@@ -69,7 +69,8 @@ public class YoRPG {
     									"Cutthroat's dagger",
     									"Assassin's blade",
     									"Moon blades",
-										"Dagger of the unseen"
+										"Dagger of the unseen",
+										"Invisible dagger"
 									};
 	public final static String[] SPELLBOOKS = {"Novice spellbook",
 										"Treatise on the dark arts",
@@ -91,6 +92,7 @@ public class YoRPG {
     private int type = 0;
     private int numPotions = 0;
     private int gold = 0;
+    private String[] listWeapons;
     private int moveCount;
     private boolean gameOver;
     private int difficulty;
@@ -167,17 +169,21 @@ public class YoRPG {
 			//instantiate the player's character
 			if (type == 1){
 				pat = new Warrior(name);
+				listWeapons = SWORDS;
 				isWarrior = true;
-			}
-			else if (type == 2)
+			} else if (type == 2) {
 				pat = new Mage(name);
-			else if (type == 3)
+				listWeapons = STAVES;
+			} else if (type == 3) {
 				pat = new Barbarian(name);
-			else if (type == 4)
+				listWeapons = AXES;
+			} else if (type == 4) {
 				pat = new Rogue(name);
-			else if (type == 5)
+				listWeapons = DAGGERS;
+			} else if (type == 5) {
 				pat = new Necromancer(name);
-			else
+				listWeapons = SPELLBOOKS;
+			} else
 				System.out.println( "invalid input" );
 			
 			selected = (type > 0);
@@ -195,7 +201,8 @@ public class YoRPG {
 
 		int i = 1;
 		int d1, d2;
-
+		boolean inInventory = false;
+		String response = "";
 		if ( Math.random() >= ( difficulty / 3.0 ) )
 		    System.out.println( "Nothing to see here. Move along!" );
 
@@ -211,23 +218,52 @@ public class YoRPG {
 				// ...but if you get hit, you take more damage.
 				try {
 				    System.out.println( "Do you feel lucky?" );
-				    System.out.println( "\t1: Nay.\n\t2: Aye!" );
+				    System.out.println( "\t1: Nay.\n\t2: Aye!\n\t3: Go to inventory" );
 				    i = Integer.parseInt( in.readLine() );
 				}
 				catch ( IOException e ) { }
 
-				if ( i == 2 )
-				    pat.specialize();
-				else
-				    pat.normalize();
+				if ( i == 3){
+					inInventory = true;
+					int weaponLevel = pat.getWeapon().getLevel();
+   				 	int armorLevel = (isWarrior ? pat.getArmor().getLevel() : 0);
+					while(inInventory){
+						//prints inventory
+						System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
+   		 				if(isWarrior)
+   	 						System.out.println("Current armor: " + ARMOR[armorLevel]);
+    					System.out.println("Potions: " + numPotions);
+    					System.out.println("press \"p\" to drink a potion, press \"q\" to leave the inventory.");	
+    					//checks for response
+    					try {
+    						response = in.readLine();
+    					}
+    					catch ( IOException e ) {}
 
-				d1 = pat.attack( smaug );
-				d2 = smaug.attack( pat );
+    					if(response == "p"){
+    						if(numPotions == 0)
+    							System.out.println("You don't have any potions to drink.");
+    						else {
+    							numPotions--;
+    							pat.lowerHP(-40);
+    						}
+    					}
+    					else
+    						inInventory = false;
+    				}
+				} else {
+					if(i == 1)
+					    pat.normalize();
+					else if(i == 2)
+					    pat.normalize();
 
-				System.out.println( pat.getName() + " dealt " + d1 + " points of damage.");
+					d1 = pat.attack( smaug );
+					d2 = smaug.attack( pat );
 
-				System.out.println( "Ye Olde Monster hit back for " + d2 + " points of damage.");
+					System.out.println( pat.getName() + " dealt " + d1 + " points of damage.");
 
+					System.out.println( "Ye Olde Monster hit back for " + d2 + " points of damage."	);
+				}
 		    }//end while
 
 		    //option 1: you & the monster perish
@@ -245,6 +281,7 @@ public class YoRPG {
 		    }
 		    //option 3: the beast slays you
 		    else if ( !pat.isAlive() ) {
+		    	gold += smaug.gold;
 				System.out.println( "Ye olde self hath expired. You got dead." );
 				return false;
 		    }
@@ -262,17 +299,6 @@ public class YoRPG {
     	int shopPotions = 100;
     	boolean inShop = true;
     	String response;
-	    String[] listWeapons;
-    	if(type == 1)
-    		listWeapons = SWORDS;
-    	if(type == 2)
-    		listWeapons = STAVES;
-    	if(type == 3)
-    		listWeapons = AXES;
-    	if(type == 4)
-    		listWeapons = DAGGERS;
-    	if(type == 4)
-    		listWeapons = SPELLBOOKS;
     	while(inShop){
     		//Reads inventory
     		System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
