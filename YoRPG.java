@@ -209,7 +209,7 @@ public class YoRPG {
 		else {
 		    System.out.println( "Lo, yonder monster approacheth!" );
 
-		    smaug = new Monster();
+		    smaug = (Math.random() < 0.5) ? new Monster() : new Thief();
 
 		    while( smaug.isAlive() && pat.isAlive() ) {
 
