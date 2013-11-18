@@ -322,7 +322,8 @@ public class YoRPG {
     		if(response.equals("w")) {
     			if(gold >= 10*weaponLevel){
 	    			gold -= 10*weaponLevel;
-				weaponLevel += 1;
+				pat.getWeapon().setLevel(weaponLevel + 1);
+				weaponLevel++;
 			}
 	    		else
 	    			System.out.println("Not enough gold");
@@ -330,7 +331,8 @@ public class YoRPG {
     		else if(response.equals("a") && isWarrior){
     			if(gold >= 10*armorLevel){
 				gold -= 10*armorLevel;
-		    		armorLevel += 1;
+				pat.getArmor().setLevel(armorLevel + 1);
+		    		armorLevel++;
 			}
 		    	else
 		    		System.out.println("Not enough gold");
