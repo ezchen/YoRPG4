@@ -10,7 +10,7 @@ public class Thief extends Monster {
 	}
 
 	public static String about() {
-		return "Sneaky monster, with a low chance of dodging";
+		return "Thieves will rob you, blind and bare.  They'll rob your skin, they'll rob your hair.  Your belt they'll steal right off your pants, they're quick, you slowpokes stand no chance.";
 	}
 }
 
