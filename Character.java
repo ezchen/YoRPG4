@@ -74,7 +74,7 @@ public abstract class Character {
 
 	public int attack( Character character ) {
 		if ( character.dodge() ) {
-			System.out.println( "You avoided the attack!" );
+			System.out.println( character.getName() +  " avoided the attack!" );
 			return 0;
 		} else {
 			int damage = (int) ((this.strength * (this.attackRating + this.weapon.getDamage()))
