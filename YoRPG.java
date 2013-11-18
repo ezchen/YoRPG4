@@ -23,11 +23,11 @@ public class YoRPG {
     									"Battle-worn blade",
     									"Zweih\u00e4nder",
     									"Monster's bane",
-    									"Elvish Blade"
+    									"Elvish Blade",
     									"Hero's companion", 
     									"Sword of ten thousand legends",
     									"Sword of ten thousand legends (on fire)"
-    								}
+    								};
     public final static String[] ARMOR = {"Beginner's garb",
     									"Apprentice clothes",
     									"Iron armor", 
@@ -38,10 +38,10 @@ public class YoRPG {
     									"Enchanted armor",
     									"Legendary armor",
     									"Mythril armor"
-    								}
+    								};
     public final static String[] STAVES = {"Beginner's staff",
     									"Experimental staff",
-    									"Oak staff"
+    									"Oak staff",
     									"Flame staff", 
     									"Frost staff", 
     									"Thunder staff", 
@@ -49,25 +49,40 @@ public class YoRPG {
     									"Warlock's staff",
     									"Mighty staff", 
     									"Staff to end all staves"
-    								}
+    								};
     public final static String[] AXES = {"Caveman's club",
-    									"Savage axe"
+    									"Savage axe",
     									"Hatchet", 
     									"Woodsman's axe",
     									"Tomahawk", 
     									"Battleaxe",
     									"Halberd",
     									"Wrathful axe",
-    									"Madman's axe"
-    									"Mythril Axe"
-    								}
-    public final static String[] DAGGERS = {"Urchin's Knife"
+    									"Madman's axe",
+    									"Mythril Axe",
+    								};
+    public final static String[] DAGGERS = {"Urchin's knife",
+    									"Scout's blade",
     									"Iron dagger",
     									"Steel dagger",
     									"Thief's dagger",
+    									"Cutthroat's dagger",
     									"Assassin's blade",
-										"Dagger of the unseen"}
-	public final static String[] SPELLBOOKS = {}
+    									"Moon blades",
+										"Dagger of the unseen",
+										"Invisible dagger"
+									};
+	public final static String[] SPELLBOOKS = {"Novice spellbook",
+										"Treatise on the dark arts",
+										"Spellbook of misery",
+										"Spellbook of corruption",
+										"Spellbook of terror",
+										"Blasphemer's spellbook",
+										"Sorcerer's companion",
+										"Book of the undead",
+										"Prophet's spellbook", 
+										"Spells of the gods"
+									};
 
     //each round, a Warrior and a Monster will be instantiated
     private Character pat;   //Is it man or woman?
@@ -76,6 +91,8 @@ public class YoRPG {
     private boolean isWarrior = false;
     private int type = 0;
     private int numPotions = 0;
+    private int gold = 0;
+    private String[] listWeapons;
     private int moveCount;
     private boolean gameOver;
     private int difficulty;
@@ -132,8 +149,8 @@ public class YoRPG {
 		}
 		catch ( IOException e ) { }
 
-		System.out.println( );
-		System.out.println( Character.about() );
+		//System.out.println( );
+		//System.out.println( Character.about() );
 
 		while ( !selected ) {
 
@@ -152,21 +169,24 @@ public class YoRPG {
 			//instantiate the player's character
 			if (type == 1){
 				pat = new Warrior(name);
+				listWeapons = SWORDS;
 				isWarrior = true;
-			}
-			else if (type == 2)
+			} else if (type == 2) {
 				pat = new Mage(name);
-			else if (type == 3)
+				listWeapons = STAVES;
+			} else if (type == 3) {
 				pat = new Barbarian(name);
-			else if (type == 4)
+				listWeapons = AXES;
+			} else if (type == 4) {
 				pat = new Rogue(name);
-			else if (type == 5)
+				listWeapons = DAGGERS;
+			} else if (type == 5) {
 				pat = new Necromancer(name);
-			else
+				listWeapons = SPELLBOOKS;
+			} else
 				System.out.println( "invalid input" );
-			}
+			
 			selected = (type > 0);
-
 		}
     }//end newGame()
 
@@ -181,7 +201,8 @@ public class YoRPG {
 
 		int i = 1;
 		int d1, d2;
-
+		boolean inInventory = false;
+		String response = "";
 		if ( Math.random() >= ( difficulty / 3.0 ) )
 		    System.out.println( "Nothing to see here. Move along!" );
 
@@ -197,23 +218,52 @@ public class YoRPG {
 				// ...but if you get hit, you take more damage.
 				try {
 				    System.out.println( "Do you feel lucky?" );
-				    System.out.println( "\t1: Nay.\n\t2: Aye!" );
+				    System.out.println( "\t1: Nay.\n\t2: Aye!\n\t3: Go to inventory" );
 				    i = Integer.parseInt( in.readLine() );
 				}
 				catch ( IOException e ) { }
 
-				if ( i == 2 )
-				    pat.specialize();
-				else
-				    pat.normalize();
+				if ( i == 3){
+					inInventory = true;
+					int weaponLevel = pat.getWeapon().getLevel();
+   				 	int armorLevel = (isWarrior ? pat.getArmor().getLevel() : 0);
+					while(inInventory){
+						//prints inventory
+						System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
+   		 				if(isWarrior)
+   	 						System.out.println("Current armor: " + ARMOR[armorLevel]);
+    					System.out.println("Potions: " + numPotions);
+    					System.out.println("press \"p\" to drink a potion, press \"q\" to leave the inventory.");	
+    					//checks for response
+    					try {
+    						response = in.readLine();
+    					}
+    					catch ( IOException e ) {}
 
-				d1 = pat.attack( smaug );
-				d2 = smaug.attack( pat );
+    					if(response == "p"){
+    						if(numPotions == 0)
+    							System.out.println("You don't have any potions to drink.");
+    						else {
+    							numPotions--;
+    							pat.lowerHP(-40);
+    						}
+    					}
+    					else
+    						inInventory = false;
+    				}
+				} else {
+					if(i == 1)
+					    pat.normalize();
+					else if(i == 2)
+					    pat.normalize();
 
-				System.out.println( pat.getName() + " dealt " + d1 + " points of damage.");
+					d1 = pat.attack( smaug );
+					d2 = smaug.attack( pat );
 
-				System.out.println( "Ye Olde Monster hit back for " + d2 + " points of damage.");
+					System.out.println( pat.getName() + " dealt " + d1 + " points of damage.");
 
+					System.out.println( "Ye Olde Monster hit back for " + d2 + " points of damage."	);
+				}
 		    }//end while
 
 		    //option 1: you & the monster perish
@@ -231,6 +281,7 @@ public class YoRPG {
 		    }
 		    //option 3: the beast slays you
 		    else if ( !pat.isAlive() ) {
+		    	gold += smaug.gold;
 				System.out.println( "Ye olde self hath expired. You got dead." );
 				return false;
 		    }
@@ -242,26 +293,55 @@ public class YoRPG {
 
     // going to shop between battles
     public void goToShop(){
+    	//gathers information on character
     	int weaponLevel = pat.getWeapon().getLevel();
     	int armorLevel = (isWarrior ? pat.getArmor().getLevel() : 0);
-    	String[] listWeapons;
-    	if(type == 1)
-    		listWeapons = SWORDS;
-    	if(type == 2)
-    		listWeapons = STAVES;
-    	if(type == 3)
-    		listWeapons = AXES;
-    	if(type == 4)
-    		listWeapons = DAGGERS;
-    	if(type == 4)
-    		listWeapons = SPELLBOOKS;
-    	System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
-    	if(isWarrior)
-    		System.out.println("Current armor: " + listWeapons[armorLevel]);
-    	System.out.println("Potions: " + numPotions);
-    	System.out.println("SHOP");
-    	System.out.println("====================");
-    	System.out.println();
+    	int shopPotions = 100;
+    	boolean inShop = true;
+    	String response;
+    	while(inShop){
+    		//Reads inventory
+    		System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
+    		if(isWarrior)
+    			System.out.println("Current armor: " + ARMOR[armorLevel]);
+    		System.out.println("Potions: " + numPotions);
+    		//Prints contents of shop (potions and higher-level weapons and armor)
+   	 		System.out.println("SHOP");
+    		System.out.println("====================");
+    		System.out.println((weaponLevel == 9) ? "----SOLD OUT----" : "w: " + listWeapons[weaponLevel + 1] + "(" + (10*weaponLevel) + " gold)");
+    		if(isWarrior)
+    			System.out.println((armorLevel == 9) ? "----SOLD OUT----" : "a: " + ARMOR[armorLevel + 1] + "(" + (10*armorLevel) + " gold)");
+    		System.out.println("p: " + "Potion" + "x" + shopPotions + " (10 gold)");
+    		System.out.println("q: Leave shop");
+    		System.out.println("====================");
+    		try {
+    			response = in.readLine();
+    		}
+    		catch(IOException e) {}
+    		if(response == "w") {
+    			if(gold >= 10*weaponLevel)
+	    			weaponLevel += 1;
+	    		else
+	    			System.out.println("Not enough gold");
+	    	}
+    		else if(response == "a" && isWarrior){
+    			if(gold >= 10*armorLevel)
+		    		armorLevel += 1;
+		    	else
+		    		System.out.println("Not enough gold");
+		    }
+    		else if(response == "p"){
+    			if(gold >= 10){
+    				numPotions++;
+    				shopPotions--;
+    			}
+    			else
+    				System.out.println("Not enough gold");
+    		}
+    		else
+    			inShop = false;
+    	}
+    	System.out.println("Left shop.");
     }
 
 
@@ -275,10 +355,11 @@ public class YoRPG {
 		while( encounters < MAX_ENCOUNTERS ) {
 		    if ( !game.playTurn() )
 				break;
-			    encounters++;
-			    System.out.println();
-			else 
-				goToShop();
+			else
+				game.goToShop();
+			encounters++;
+			System.out.println();
+			
 		}
 
 		System.out.println( "Thy game doth be over." );
@@ -290,5 +371,5 @@ public class YoRPG {
 
 
 
-/*=============================================
+/*==============================================
   =============================================*/
