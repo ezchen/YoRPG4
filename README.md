@@ -1,4 +1,4 @@
 Ye Olde Role Playing Game
 =========================
 
-Team Name: Daniel Zabari, Eric Chen, Gideon Leeper
+Gideon's Fable: Daniel Zabari, Eric Chen, Gideon Leeper
