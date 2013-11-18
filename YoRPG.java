@@ -240,7 +240,7 @@ public class YoRPG {
     					}
     					catch ( IOException e ) {}
 
-    					if(response == "p"){
+    					if(response.equals("p")) {
     						if(numPotions == 0)
     							System.out.println("You don't have any potions to drink.");
     						else {
@@ -276,12 +276,12 @@ public class YoRPG {
 		    }
 		    //option 2: you slay the beast	
 		    else if ( !smaug.isAlive() ) {
+		    	gold += smaug.gold;
 				System.out.println( "HuzzaaH! Ye olde monster hath been slain!" );
 				return true;
 		    }
 		    //option 3: the beast slays you
 		    else if ( !pat.isAlive() ) {
-		    	gold += smaug.gold;
 				System.out.println( "Ye olde self hath expired. You got dead." );
 				return false;
 		    }
@@ -318,19 +318,19 @@ public class YoRPG {
     			response = in.readLine();
     		}
     		catch(IOException e) {}
-    		if(response == "w") {
+    		if(response.equals("w")) {
     			if(gold >= 10*weaponLevel)
 	    			weaponLevel += 1;
 	    		else
 	    			System.out.println("Not enough gold");
 	    	}
-    		else if(response == "a" && isWarrior){
+    		else if(response.equals("a") && isWarrior){
     			if(gold >= 10*armorLevel)
 		    		armorLevel += 1;
 		    	else
 		    		System.out.println("Not enough gold");
 		    }
-    		else if(response == "p"){
+    		else if(response.equals("p")){
     			if(gold >= 10){
     				numPotions++;
     				shopPotions--;

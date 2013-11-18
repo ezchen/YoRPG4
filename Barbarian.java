@@ -3,9 +3,9 @@ public class Barbarian extends Character{
     public Barbarian(String name){
 	this.name=name;
 	this.life=125;
-	this.defense=100;
-	this.strength=20;
-	this.attackRating=0.2;
+	this.defense=10;
+	this.strength=50;
+	this.attackRating=.7;
     }
 
     public void normalize() {}

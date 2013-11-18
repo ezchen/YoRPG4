@@ -12,7 +12,7 @@
 		this.strength = (int) (20 + (46 * Math.random()));
 		this.defense = 20;
 		this.attackRating = .9;
-		this.gold = (int) (this.strength * .1);
+		this.gold = (int) (this.strength);
 	}
 
 	public void specialize() {

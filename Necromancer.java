@@ -3,9 +3,9 @@ public class Necromancer extends Character{
     public Necromancer(String name){
 	this.name=name;
 	this.life=125;
-	this.defense=100;
-	this.strength=20;
-	this.attackRating=0.2;
+	this.defense=20;
+	this.strength=40;
+	this.attackRating=2;
     }
 
     public void normalize() {}

@@ -13,7 +13,7 @@ public class Rogue extends Character {
 		this.strength = 65;
 		this.defense = 15;
 		this.attackRating = .5;
-		this.dodge = .5;
+		this.dodge = .9;
 	}
 
 	public Rogue( String name ) {
@@ -22,12 +22,12 @@ public class Rogue extends Character {
 	}
 
 	public void specialize() {
-		this.dodge = .3;
-		this.attackRating = .6;
+		this.dodge = .4;
+		this.attackRating = .9;
 	}
 
 	public void normalize() {
-		this.dodge = .5;
+		this.dodge = .9;
 		this.attackRating = .5;
 	}
 
