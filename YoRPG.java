@@ -16,7 +16,7 @@ public class YoRPG {
     // ~~~~~~~~~~~ INSTANCE VARIABLES ~~~~~~~~~~~
 
     //change this constant to set number of encounters in a game
-    public final static int MAX_ENCOUNTERS = 5;
+    public final static int MAX_ENCOUNTERS = 12;
     public final static String[] SWORDS = {"Beginner's blade",
     									"Apprentice sword", 
     									"Warrior's companion",
@@ -276,8 +276,8 @@ public class YoRPG {
 		    }
 		    //option 2: you slay the beast	
 		    else if ( !smaug.isAlive() ) {
-		    	gold += smaug.gold;
-				System.out.println( "HuzzaaH! Ye olde monster hath been slain!" );
+		    		gold += smaug.gold;
+				System.out.println( "HuzzaaH! Ye olde monster hath been slain, to yield " + smaug.gold + " gold coins!" );
 				return true;
 		    }
 		    //option 3: the beast slays you
@@ -304,7 +304,8 @@ public class YoRPG {
     		System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
     		if(isWarrior)
     			System.out.println("Current armor: " + ARMOR[armorLevel]);
-    		System.out.println("Potions: " + numPotions);
+    		System.out.println("Potions in inventory: " + numPotions);
+		System.out.println("Gold: " + gold);
     		//Prints contents of shop (potions and higher-level weapons and armor)
    	 		System.out.println("SHOP");
     		System.out.println("====================");
@@ -319,19 +320,26 @@ public class YoRPG {
     		}
     		catch(IOException e) {}
     		if(response.equals("w")) {
-    			if(gold >= 10*weaponLevel)
-	    			weaponLevel += 1;
+    			if(gold >= 10*weaponLevel){
+	    			gold -= 10*weaponLevel;
+				pat.getWeapon().setLevel(weaponLevel + 1);
+				weaponLevel++;
+			}
 	    		else
 	    			System.out.println("Not enough gold");
 	    	}
     		else if(response.equals("a") && isWarrior){
-    			if(gold >= 10*armorLevel)
-		    		armorLevel += 1;
+    			if(gold >= 10*armorLevel){
+				gold -= 10*armorLevel;
+				pat.getArmor().setLevel(armorLevel + 1);
+		    		armorLevel++;
+			}
 		    	else
 		    		System.out.println("Not enough gold");
 		    }
     		else if(response.equals("p")){
     			if(gold >= 10){
+				gold -= 10;
     				numPotions++;
     				shopPotions--;
     			}

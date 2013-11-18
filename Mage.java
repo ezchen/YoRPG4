@@ -6,9 +6,9 @@ public class Mage extends Character{
 
     public Mage(String name){
 	this.name=name;
-	this.life=125;
-	this.defense=20;
-	this.strength=40;
+	this.life=150;
+	this.defense=45;
+	this.strength=60;
 	this.attackRating=.7;
     }
 
