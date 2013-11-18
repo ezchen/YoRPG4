@@ -8,8 +8,14 @@ public class Necromancer extends Character{
 	this.attackRating=2;
     }
 
-    public void normalize() {}
-    public void specialize() {}
+    public void normalize() {
+	    this.defense = 20;
+	    this.attackRating = 2;
+    }
+    public void specialize() {
+	    this.defense = 15;
+	    this.attackRating = 2.1;
+    }
 
     public int equip( Armor a ) {return -1;}
 

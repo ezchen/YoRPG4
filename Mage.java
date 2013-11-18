@@ -12,8 +12,15 @@ public class Mage extends Character{
 	this.attackRating=.7;
     }
 
-    public void normalize() {}
-    public void specialize() {}
+    public void normalize() {
+	    this.attackRating = .7;
+	    this.defense = 20;
+    }
+
+    public void specialize() {
+	    this.attackRating = .8;
+	    this.defense = 15;
+    }
 
     public int equip( Armor a ) {return -1;}
 
