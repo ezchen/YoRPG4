@@ -25,7 +25,7 @@ public class Rogue extends Character {
 	}
 
 	public void normalize() {
-		this.dodge = .9;
+		this.dodge = .7;
 		this.attackRating = .5;
 	}
 
