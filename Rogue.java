@@ -5,15 +5,13 @@
 
 public class Rogue extends Character {
 
-	private double dodge;
-
 	public Rogue() {
 		this.name = "no name specified";
 		this.life = 100;
 		this.strength = 65;
 		this.defense = 15;
 		this.attackRating = .5;
-		this.dodge = .9;
+		this.dodge = .7;
 	}
 
 	public Rogue( String name ) {
