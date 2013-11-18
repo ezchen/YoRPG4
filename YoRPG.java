@@ -298,7 +298,7 @@ public class YoRPG {
     	int armorLevel = (isWarrior ? pat.getArmor().getLevel() : 0);
     	int shopPotions = 100;
     	boolean inShop = true;
-    	String response;
+    	String response = "";
     	while(inShop){
     		//Reads inventory
     		System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
