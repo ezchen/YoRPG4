@@ -320,16 +320,18 @@ public class YoRPG {
     		}
     		catch(IOException e) {}
     		if(response.equals("w")) {
-    			if(gold >= 10*weaponLevel)
+    			if(gold >= 10*weaponLevel){
 	    			gold -= 10*weaponLevel;
 				weaponLevel += 1;
+			}
 	    		else
 	    			System.out.println("Not enough gold");
 	    	}
     		else if(response.equals("a") && isWarrior){
-    			if(gold >= 10*armorLevel)
+    			if(gold >= 10*armorLevel){
 				gold -= 10*armorLevel;
 		    		armorLevel += 1;
+			}
 		    	else
 		    		System.out.println("Not enough gold");
 		    }
