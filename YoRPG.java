@@ -65,6 +65,7 @@ public class YoRPG {
     									"Iron dagger",
     									"Steel dagger",
     									"Thief's dagger",
+    									"Cutthroat's dagger",
     									"Assassin's blade",
 										"Dagger of the unseen"
 									};
@@ -77,7 +78,8 @@ public class YoRPG {
 										"Sorcerer's companion",
 										"Book of the undead",
 										"Prophet's spellbook", 
-										""};
+										"Spells of the gods"
+									};
 
     //each round, a Warrior and a Monster will be instantiated
     private Character pat;   //Is it man or woman?
@@ -86,6 +88,7 @@ public class YoRPG {
     private boolean isWarrior = false;
     private int type = 0;
     private int numPotions = 0;
+    private int gold = 0;
     private int moveCount;
     private boolean gameOver;
     private int difficulty;
@@ -253,24 +256,61 @@ public class YoRPG {
     public void goToShop(){
     	int weaponLevel = pat.getWeapon().getLevel();
     	int armorLevel = (isWarrior ? pat.getArmor().getLevel() : 0);
-    	String[] listWeapons;
-    	if(type == 1)
-    		listWeapons = SWORDS;
-    	if(type == 2)
-    		listWeapons = STAVES;
-    	if(type == 3)
-    		listWeapons = AXES;
-    	if(type == 4)
-    		listWeapons = DAGGERS;
-    	if(type == 4)
-    		listWeapons = SPELLBOOKS;
-    	System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
-    	if(isWarrior)
-    		System.out.println("Current armor: " + listWeapons[armorLevel]);
-    	System.out.println("Potions: " + numPotions);
-    	System.out.println("SHOP");
-    	System.out.println("====================");
-    	System.out.println();
+    	int shopPotions = 100;
+    	boolean inShop = true;
+    	String response;
+    	while(inShop){
+	    	String[] listWeapons;
+    		if(type == 1)
+    			listWeapons = SWORDS;
+    		if(type == 2)
+    			listWeapons = STAVES;
+    		if(type == 3)
+    			listWeapons = AXES;
+    		if(type == 4)
+    			listWeapons = DAGGERS;
+    		if(type == 4)
+    			listWeapons = SPELLBOOKS;
+    		System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
+    		if(isWarrior)
+    			System.out.println("Current armor: " + ARMOR[armorLevel]);
+    		System.out.println("Potions: " + numPotions);
+   	 		System.out.println("SHOP");
+    		System.out.println("====================");
+    		System.out.println((weaponLevel == 9) ? "----SOLD OUT----" : "w: " + listWeapons[weaponLevel + 1] + "(" + (10*weaponLevel) + " gold)");
+    		if(isWarrior)
+    			System.out.println((armorLevel == 9) ? "----SOLD OUT----" : "a: " + ARMOR[armorLevel + 1] + "(" + (10*armorLevel) + " gold)");
+    		System.out.println("p: " + "Potion" + "x" + shopPotions + " (10 gold)");
+    		System.out.println("q: Leave shop");
+    		System.out.println("====================");
+    		try {
+    			response = in.readLine();
+    		}
+    		catch(IOException e) {}
+    		if(response == "w") {
+    			if(gold >= 10*weaponLevel)
+	    			weaponLevel += 1;
+	    		else
+	    			System.out.println("Not enough gold");
+	    	}
+    		else if(response == "a" && isWarrior){
+    			if(gold >= 10*armorLevel)
+		    		armorLevel += 1;
+		    	else
+		    		System.out.println("Not enough gold");
+		    }
+    		else if(response == "p"){
+    			if(gold >= 10){
+    				numPotions++;
+    				shopPotions--;
+    			}
+    			else
+    				System.out.println("Not enough gold");
+    		}
+    		else
+    			inShop = false;
+    	}
+    	System.out.println("Left shop.");
     }
 
 
