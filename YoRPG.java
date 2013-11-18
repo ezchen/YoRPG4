@@ -276,8 +276,8 @@ public class YoRPG {
 		    }
 		    //option 2: you slay the beast	
 		    else if ( !smaug.isAlive() ) {
-		    	gold += smaug.gold;
-				System.out.println( "HuzzaaH! Ye olde monster hath been slain!" );
+		    		gold += smaug.gold;
+				System.out.println( "HuzzaaH! Ye olde monster hath been slain, to yield " + smaug.gold " gold coins!" );
 				return true;
 		    }
 		    //option 3: the beast slays you
@@ -304,7 +304,8 @@ public class YoRPG {
     		System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
     		if(isWarrior)
     			System.out.println("Current armor: " + ARMOR[armorLevel]);
-    		System.out.println("Potions: " + numPotions);
+    		System.out.println("Potions in inventory: " + numPotions);
+		System.out.println("Gold: " + gold);
     		//Prints contents of shop (potions and higher-level weapons and armor)
    	 		System.out.println("SHOP");
     		System.out.println("====================");
