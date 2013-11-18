@@ -16,7 +16,7 @@ public class YoRPG {
     // ~~~~~~~~~~~ INSTANCE VARIABLES ~~~~~~~~~~~
 
     //change this constant to set number of encounters in a game
-    public final static int MAX_ENCOUNTERS = 5;
+    public final static int MAX_ENCOUNTERS = 12;
     public final static String[] SWORDS = {"Beginner's blade",
     									"Apprentice sword", 
     									"Warrior's companion",
