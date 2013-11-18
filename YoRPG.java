@@ -23,11 +23,11 @@ public class YoRPG {
     									"Battle-worn blade",
     									"Zweih\u00e4nder",
     									"Monster's bane",
-    									"Elvish Blade"
+    									"Elvish Blade",
     									"Hero's companion", 
     									"Sword of ten thousand legends",
     									"Sword of ten thousand legends (on fire)"
-    								}
+    								};
     public final static String[] ARMOR = {"Beginner's garb",
     									"Apprentice clothes",
     									"Iron armor", 
@@ -38,10 +38,10 @@ public class YoRPG {
     									"Enchanted armor",
     									"Legendary armor",
     									"Mythril armor"
-    								}
+    								};
     public final static String[] STAVES = {"Beginner's staff",
     									"Experimental staff",
-    									"Oak staff"
+    									"Oak staff",
     									"Flame staff", 
     									"Frost staff", 
     									"Thunder staff", 
@@ -49,25 +49,35 @@ public class YoRPG {
     									"Warlock's staff",
     									"Mighty staff", 
     									"Staff to end all staves"
-    								}
+    								};
     public final static String[] AXES = {"Caveman's club",
-    									"Savage axe"
+    									"Savage axe",
     									"Hatchet", 
     									"Woodsman's axe",
     									"Tomahawk", 
     									"Battleaxe",
     									"Halberd",
     									"Wrathful axe",
-    									"Madman's axe"
-    									"Mythril Axe"
-    								}
-    public final static String[] DAGGERS = {"Urchin's Knife"
+    									"Madman's axe",
+    									"Mythril Axe",
+    								};
+    public final static String[] DAGGERS = {"Urchin's Knife",
     									"Iron dagger",
     									"Steel dagger",
     									"Thief's dagger",
     									"Assassin's blade",
-										"Dagger of the unseen"}
-	public final static String[] SPELLBOOKS = {}
+										"Dagger of the unseen"
+									};
+	public final static String[] SPELLBOOKS = {"Novice spellbook",
+										"Treatise on the dark arts",
+										"Spellbook of misery",
+										"Spellbook of corruption",
+										"Spellbook of terror",
+										"Blasphemer's spellbook",
+										"Sorcerer's companion",
+										"Book of the undead",
+										"Prophet's spellbook", 
+										""};
 
     //each round, a Warrior and a Monster will be instantiated
     private Character pat;   //Is it man or woman?
@@ -132,8 +142,8 @@ public class YoRPG {
 		}
 		catch ( IOException e ) { }
 
-		System.out.println( );
-		System.out.println( Character.about() );
+		//System.out.println( );
+		//System.out.println( Character.about() );
 
 		while ( !selected ) {
 
@@ -164,9 +174,8 @@ public class YoRPG {
 				pat = new Necromancer(name);
 			else
 				System.out.println( "invalid input" );
-			}
+			
 			selected = (type > 0);
-
 		}
     }//end newGame()
 
@@ -275,10 +284,11 @@ public class YoRPG {
 		while( encounters < MAX_ENCOUNTERS ) {
 		    if ( !game.playTurn() )
 				break;
-			    encounters++;
-			    System.out.println();
-			else 
-				goToShop();
+			else
+				game.goToShop();
+			encounters++;
+			System.out.println();
+			
 		}
 
 		System.out.println( "Thy game doth be over." );
