@@ -5,6 +5,7 @@
  public class Monster extends Character {
 
 	public Monster() {
+		this.name = "The monster ";
 		this.life = 150;
 		this.strength = (int) (20 + (46 * Math.random()));
 		this.defense = 20;

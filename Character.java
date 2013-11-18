@@ -10,7 +10,7 @@ public abstract class Character {
 	protected int life;
 	protected int strength;
 	protected int defense;
-	protected int dodge = -1;
+	protected double dodge = -1;
 	protected double attackRating;
 	protected Weapon weapon = new Weapon(0);
 	protected Armor armor = new Armor(0);
