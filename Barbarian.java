@@ -1,6 +1,6 @@
 public class Barbarian extends Character{
 
-    public Necromancer(String name){
+    public Barbarian(String name){
 	this.name=name;
 	this.life=125;
 	this.defense=100;
