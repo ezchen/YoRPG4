@@ -99,21 +99,6 @@ public abstract class Character {
 		return this.strength;
 	}
 
-	//we should replace the current weapon with an existing
-	//object already with the default value of 0 instead of
-	//creating a new object each time to save memory. But
-	//keep this until we implement inventory
-	public double unEquipWeapon() {
-		this.weapon = new Weapon( 0 );
-		return this.attackRating;
-	}
-
-
-	public int unEquipArmor() {
-		this.armor = new Armor( 0 );
-		return this.defense;
-	}
-
 	public int use( Potion pot ) {
 		this.life = this.life + pot.getLife();
 		return this.life;
