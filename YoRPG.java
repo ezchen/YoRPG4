@@ -277,7 +277,7 @@ public class YoRPG {
 		    //option 2: you slay the beast	
 		    else if ( !smaug.isAlive() ) {
 		    		gold += smaug.gold;
-				System.out.println( "HuzzaaH! Ye olde monster hath been slain, to yield " + smaug.gold " gold coins!" );
+				System.out.println( "HuzzaaH! Ye olde monster hath been slain, to yield " + smaug.gold + " gold coins!" );
 				return true;
 		    }
 		    //option 3: the beast slays you
