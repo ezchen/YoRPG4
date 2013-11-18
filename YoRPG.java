@@ -61,12 +61,14 @@ public class YoRPG {
     									"Madman's axe",
     									"Mythril Axe",
     								};
-    public final static String[] DAGGERS = {"Urchin's Knife",
+    public final static String[] DAGGERS = {"Urchin's knife",
+    									"Scout's blade",
     									"Iron dagger",
     									"Steel dagger",
     									"Thief's dagger",
     									"Cutthroat's dagger",
     									"Assassin's blade",
+    									"Moon blades",
 										"Dagger of the unseen"
 									};
 	public final static String[] SPELLBOOKS = {"Novice spellbook",
@@ -254,27 +256,30 @@ public class YoRPG {
 
     // going to shop between battles
     public void goToShop(){
+    	//gathers information on character
     	int weaponLevel = pat.getWeapon().getLevel();
     	int armorLevel = (isWarrior ? pat.getArmor().getLevel() : 0);
     	int shopPotions = 100;
     	boolean inShop = true;
     	String response;
+	    String[] listWeapons;
+    	if(type == 1)
+    		listWeapons = SWORDS;
+    	if(type == 2)
+    		listWeapons = STAVES;
+    	if(type == 3)
+    		listWeapons = AXES;
+    	if(type == 4)
+    		listWeapons = DAGGERS;
+    	if(type == 4)
+    		listWeapons = SPELLBOOKS;
     	while(inShop){
-	    	String[] listWeapons;
-    		if(type == 1)
-    			listWeapons = SWORDS;
-    		if(type == 2)
-    			listWeapons = STAVES;
-    		if(type == 3)
-    			listWeapons = AXES;
-    		if(type == 4)
-    			listWeapons = DAGGERS;
-    		if(type == 4)
-    			listWeapons = SPELLBOOKS;
+    		//Reads inventory
     		System.out.println("Current Weapon: " + listWeapons[weaponLevel]);
     		if(isWarrior)
     			System.out.println("Current armor: " + ARMOR[armorLevel]);
     		System.out.println("Potions: " + numPotions);
+    		//Prints contents of shop (potions and higher-level weapons and armor)
    	 		System.out.println("SHOP");
     		System.out.println("====================");
     		System.out.println((weaponLevel == 9) ? "----SOLD OUT----" : "w: " + listWeapons[weaponLevel + 1] + "(" + (10*weaponLevel) + " gold)");
